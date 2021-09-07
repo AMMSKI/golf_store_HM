@@ -1,9 +1,9 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import Product from './Product'
 
-const Products = ({ brand_id }) => {
 
+const Products = (props) => {
+  
   const [products, setProducts] = useState([])
   
   useEffect(()=> {
@@ -12,24 +12,42 @@ const Products = ({ brand_id }) => {
 
   const getProducts = async () => {
     try {
-    let res = await axios.get(`/api/brands/${brand_id}/products`)
+    let res = await axios.get(`/api/brands/${props.match.params.brand_id}/products`)
     setProducts(res.data)
     }catch (err){
       console.log(err)
     }
   }
-  
 
-  const renderProducts = () => {
-    return products.map((p) => <Product key={p.id} {...p} /> )
+  const deleteProduct = async (brand_id, id) => {
+    try {
+      await axios.delete(`/api/brands/${brand_id}/products/${id}`)
+      let filteredProducts = products.filter((p) => p.id != id)
+      setProducts(filteredProducts)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
+  const renderProducts = () => {
+    return products.map((p) => {
+      return (
+      <div key={p.id}>
+       <h2>{p.name}</h2>
+       <p>{p.description}</p>
+       <button onClick={() => deleteProduct(p.brand_id, p.id)}>Delete</button>
+     </div>
+      )
+    })
+  }
+
+  console.log(products)
  return (
-   <>
-     <h1>Products here</h1>
+   <div>
+     <h1>Here are your products:</h1>
      {renderProducts()}
-   </>
- )
+   </div>
+  )
 }
 
 export default Products

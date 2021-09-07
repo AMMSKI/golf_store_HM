@@ -30,17 +30,14 @@ const Brands = () => {
     }
   }
 
-    
-
   const deleteBrand = async (id) => {
     await axios.delete(`/api/brands/${id}`)
     let newBrands = brands.filter((b) => b.id !== id ? b : '')
     setBrands(newBrands)
   }
 
-
   const renderBrands = () => {
-  return brands.map((b) => <Brand  key={b.id} {...b} deleteBrand={deleteBrand} updateBrand={updateBrand} />) 
+  return brands.map((b) => <Brand  key={b.id} {...b} deleteBrand={deleteBrand}/>) 
   }
 
   return (

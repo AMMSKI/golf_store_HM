@@ -10,9 +10,6 @@ const NavBar = () => {
       <Link to='/brands'>
         Brands
       </Link>
-      <Link to='/products'>
-        See products
-      </Link>
     </>
   )
 }

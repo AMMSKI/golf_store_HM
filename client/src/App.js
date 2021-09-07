@@ -13,8 +13,8 @@ function App() {
       <Switch>
         <Route exact path='/' component={Home}/>
         <Route exact path='/brands' component={Brands}/>
-        <Route exact path='/products' component={Products}/>
         <Route exact path="/brands/:id" component={EditBrandForm} />
+        <Route exact path='/brands/:brand_id/products' component={Products}/>
       </Switch>
     </div>
   );

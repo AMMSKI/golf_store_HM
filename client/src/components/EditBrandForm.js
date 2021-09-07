@@ -1,19 +1,21 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const EditBrandForm = (props) => {
-  console.log(props)
   const [name, setName] = useState('')
   const [about, setAbout] = useState('')
-  
+
+  useEffect(() => {
+    getBrand()
+  }, [])
 
   const getBrand = async () => {
     try {
-    let res = await axios.get(`api/brands/${props.match.params.id}`)
+    let res = await axios.get(`/api/brands/${props.match.params.id}`)
     setName(res.data.name)
     setAbout(res.data.about)
     }catch(err) {
-      console.lo(err)
+      console.log(err)
     }
   }
 
@@ -27,25 +29,16 @@ const EditBrandForm = (props) => {
     }
   }
 
-//   try {
-//     let res = await axios.put(`/api/brands/${brand.id}`, brand)
-//    setBrands(res.data)
-//  }catch(err){
-//    console.log(err)
-//  }
-// }
-
-
   return (
     <div>
       <form onSubmit={handleClick}>
-      <input type="hidden" name="_method" value="patch" />
-        <p>Add Brand Name</p>
+        <p>Edit Brand Name</p>
         <input value={name} onChange={(e) => {setName(e.target.value)}}/>
-        <p>Add About</p>
+        <p>Edit About</p>
         <input value={about} onChange={(e) => {setAbout(e.target.value)}} />
-        <button type='submit'>Add Brand</button>
+        <button type='submit'>Edit Brand</button>
       </form>
+      <p onClick={() => props.history.goBack()}>Back!</p>
     </div>
   )
 }

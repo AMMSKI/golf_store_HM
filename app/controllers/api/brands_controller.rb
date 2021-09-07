@@ -5,6 +5,11 @@ class Api::BrandsController < ApplicationController
     render json: Brand.all
   end
 
+  def show 
+    brand = Brand.find(params[:id])
+    render json: brand
+  end
+
   def create
     brand = Brand.new(brand_params)
     if brand.save
@@ -19,13 +24,10 @@ class Api::BrandsController < ApplicationController
 
   end
 
-
-
   def destroy 
     @brand.destroy
     render json: @brand
   end
-
 
 
   private 
@@ -33,7 +35,6 @@ class Api::BrandsController < ApplicationController
   def brand_params
     params.require(:brand).permit(:name, :about, :id)
   end
-
 
   def set_brand
     @brand = Brand.find(params[:id])

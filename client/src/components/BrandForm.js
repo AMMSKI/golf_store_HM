@@ -4,7 +4,7 @@ const BrandForm = (props) => {
   console.log(props)
   const [name, setName] = useState('')
   const [about, setAbout] = useState('')
-  const [id, setId] = useState('')
+  
 
   const handleClick = (e) => {
     e.preventDefault()
@@ -12,7 +12,6 @@ const BrandForm = (props) => {
     setName('')
     setAbout('')
   }
-
 
   return (
     <div>
