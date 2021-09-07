@@ -32,7 +32,7 @@ const Brands = () => {
 
   const updateBrand = async (brand) => {
     try {
-      let res = await axios.patch(`/api/brands/${brand.id}`, brand)
+       let res = await axios.put(`/api/brands/${brand.id}`, brand)
       setBrands(res.data)
     }catch(err){
       console.log(err)
@@ -48,7 +48,8 @@ const Brands = () => {
 
 
   const renderBrands = () => {
-  return brands.map((b) => <Brand  key={b.id} {...b} deleteBrand={deleteBrand} updateBrand={updateBrand} />)
+  return brands.map((b) => <Brand  key={b.id} {...b} deleteBrand={deleteBrand} updateBrand={updateBrand} />) // going to t move the map functoin into my Brand component to get a better functionality
+
   }
 
   return (

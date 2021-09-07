@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 
 const BrandForm = (props) => {
-  const [name, setName] = useState(props.brand ? props.name : '')
-  const [about, setAbout] = useState(props.brand ? props.about : '')
-  const [id, setId] = useState(props.brand ? props.id : '')
+  console.log(props)
+  const [name, setName] = useState(props.name ? props.name : '')
+  const [about, setAbout] = useState(props.about ? props.about : '')
+  const [id, setId] = useState(props.id ? props.id : '')
 
   const handleClick = (e) => {
     e.preventDefault()
-    if(props.brand){
+    if(props.id){
       props.updateBrand({ id, name, about })
     } else {
       props.newBrand({ name, about })
