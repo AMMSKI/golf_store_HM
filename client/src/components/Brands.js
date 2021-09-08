@@ -23,7 +23,7 @@ const Brands = () => {
 
   const newBrand = async (brand) => {
     try {
-      let res = await axios.post('api/brands', brand)
+      let res = await axios.post('/api/brands', brand)
       setBrands(res.data)
     }catch(err){
       console.log(err)
