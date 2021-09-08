@@ -1,8 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useHistory } from "react-router-dom"
+import ProductsForm from './ProductsFrom'
 
 
 const Products = (props) => {
+  const history = useHistory()
   
   const [products, setProducts] = useState([])
   
@@ -35,6 +38,7 @@ const Products = (props) => {
       <div key={p.id}>
        <h2>{p.name}</h2>
        <p>{p.description}</p>
+       <button onClick={() => history.push(`/brands/${p.brand_id}/products/${p.id}`)}>Edit</button>
        <button onClick={() => deleteProduct(p.brand_id, p.id)}>Delete</button>
      </div>
       )
@@ -45,6 +49,7 @@ const Products = (props) => {
  return (
    <div>
      <h1>Here are your products:</h1>
+     <ProductsForm />
      {renderProducts()}
    </div>
   )

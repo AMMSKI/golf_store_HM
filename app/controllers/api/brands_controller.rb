@@ -21,7 +21,6 @@ class Api::BrandsController < ApplicationController
     if @brand.update(brand_params)
       render json: Brand.all
     end
-
   end
 
   def destroy 
